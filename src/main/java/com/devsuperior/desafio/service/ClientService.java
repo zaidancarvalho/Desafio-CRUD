@@ -28,5 +28,11 @@ public class ClientService {
 		Client client =  repository.findById(id).get();
 		return client;
 	}
-
+	
+	@Transactional
+	public Client insert(Client client) {
+		Client newClient = new Client();
+		client = repository.save(client);
+		return newClient;
+	}
 }
