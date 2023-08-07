@@ -19,6 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.devsuperior.desafio.entity.Client;
 import com.devsuperior.desafio.service.ClientService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/clients")
 public class ClientController {
@@ -39,7 +41,7 @@ public class ClientController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Client> insert(@RequestBody Client client) {
+	public ResponseEntity<Client> insert(@Valid @RequestBody Client client) {
 		service.insert(client);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(client.getId()).toUri();
 		return ResponseEntity.created(uri).body(client);

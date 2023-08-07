@@ -5,14 +5,14 @@ import java.time.Instant;
 public class StandardError {
 
 	private Instant timestamp;
-	private Integer Status;
+	private Integer status;
 	private String error;
 	private String path;
 	
 	public StandardError(Instant timestamp, Integer status, String error, String path) {
 		super();
 		this.timestamp = timestamp;
-		Status = status;
+		this.status = status;
 		this.error = error;
 		this.path = path;
 	}
@@ -26,11 +26,11 @@ public class StandardError {
 	}
 
 	public Integer getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(Integer status) {
-		Status = status;
+		 this.status = status;
 	}
 
 	public String getError() {

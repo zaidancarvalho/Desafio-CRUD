@@ -53,6 +53,8 @@ public class ClientService {
 		}
 	}
 
+	/*No meu log não aparece o tipo de exceção, então, 
+	adaptei a forma de tratar a exceção usando o if*/
 	@Transactional
 	public void delete(Long id) {
 		if(!repository.existsById(id)) {
