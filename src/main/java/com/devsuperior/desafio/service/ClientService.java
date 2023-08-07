@@ -12,6 +12,8 @@ import com.devsuperior.desafio.entity.Client;
 import com.devsuperior.desafio.repository.ClientRepository;
 import com.devsuperior.desafio.service.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class ClientService {
 
@@ -28,8 +30,8 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public Client findById(Long id) {
 		try {
-		Client client = repository.findById(id).get();
-		return client;
+			Client client = repository.findById(id).get();
+			return client;
 		} catch (NoSuchElementException e) {
 			throw new ResourceNotFoundException("Resource not found");
 		}
@@ -42,9 +44,13 @@ public class ClientService {
 
 	@Transactional
 	public Client update(Long id, Client obj) {
+		try {
 		Client entity = repository.getReferenceById(id);
 		updateData(entity, obj);
 		return repository.save(obj);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("id " + id + " not found");
+		}
 	}
 
 	@Transactional
