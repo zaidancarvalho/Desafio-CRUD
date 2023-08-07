@@ -41,6 +41,10 @@ public class ClientService {
 		return repository.save(obj);
 	}
 	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
 	private void updateData(Client entity, Client obj) {
 		entity.setName(obj.getName());
 		entity.setCpf(obj.getCpf());
