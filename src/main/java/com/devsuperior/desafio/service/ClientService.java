@@ -44,13 +44,13 @@ public class ClientService {
 
 	@Transactional
 	public Client update(Long id, Client obj) {
-		try {
-		Client entity = repository.getReferenceById(id);
-		updateData(entity, obj);
-		return repository.save(obj);
-		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("id " + id + " not found");
-		}
+	    try {
+	        Client entity = repository.getReferenceById(id);
+	        updateData(entity, obj); 
+	        return repository.save(entity); 
+	    } catch (EntityNotFoundException e) {
+	        throw new ResourceNotFoundException("id " + id + " not found");
+	    }
 	}
 
 	/*No meu log não aparece o tipo de exceção, então, 
