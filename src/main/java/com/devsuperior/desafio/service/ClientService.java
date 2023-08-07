@@ -31,8 +31,21 @@ public class ClientService {
 	
 	@Transactional
 	public Client insert(Client client) {
-		Client newClient = new Client();
-		client = repository.save(client);
-		return newClient;
+		return repository.save(client);
+	}
+	
+	@Transactional
+	public Client update(Long id, Client obj) {
+		Client entity = repository.getReferenceById(id);
+		updateData(entity, obj);
+		return repository.save(obj);
+	}
+	
+	private void updateData(Client entity, Client obj) {
+		entity.setName(obj.getName());
+		entity.setCpf(obj.getCpf());
+		entity.setIncome(obj.getIncome());
+		entity.setBirthDate(obj.getBirthDate());
+		entity.setChildren(obj.getChildren());
 	}
 }
